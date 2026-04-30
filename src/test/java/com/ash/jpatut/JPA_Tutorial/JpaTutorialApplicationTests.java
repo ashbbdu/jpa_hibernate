@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @SpringBootTest
 class JpaTutorialApplicationTests {
@@ -21,9 +22,18 @@ class JpaTutorialApplicationTests {
 
 	@Test
 	void testRepository () {
-		ProductEntity product = ProductEntity.builder().price(new BigDecimal(10)).title("New Title")
-				.category("juice").sku("SKU-0909").build();
-		productRepository.save(product);
+		ProductEntity product = ProductEntity.builder().price(new BigDecimal(101111)).title("New Title")
+				.category("juice").quantity(10).sku("SKU-0211219019111").build();
+		ProductEntity savedProduct = productRepository.save(product);
+		System.out.println(savedProduct);
 	}
+
+	@Test
+	void getRepository () {
+		List<ProductEntity> products = productRepository.findAll();
+		System.out.println(products);
+	}
+
+
 
 }
