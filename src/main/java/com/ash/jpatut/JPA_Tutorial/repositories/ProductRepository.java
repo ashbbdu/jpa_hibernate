@@ -17,4 +17,9 @@ public interface ProductRepository extends JpaRepository<ProductEntity , Long> {
 
 //    will return first two result
     public List<ProductEntity> findFirst2ByCreatedAtBetween(LocalDateTime starDate , LocalDateTime endDate);
+
+    public List<ProductEntity> findByCreatedAtAfter(LocalDateTime date);
+
+    public List<ProductEntity> findByQuantityIsNull();
+
 }

@@ -23,8 +23,8 @@ class JpaTutorialApplicationTests {
 
 	@Test
 	void testRepository () {
-		ProductEntity product = ProductEntity.builder().price(new BigDecimal(101111)).title("New Title")
-				.category("juice").quantity(10).sku("SKU-0211219019111").build();
+		ProductEntity product = ProductEntity.builder().price(new BigDecimal(1011111)).title("New Title")
+				.category("juice").quantity(110).sku("SKU-02112119019111").build();
 //		ProductEntity savedProduct = productRepository.save(product);
 //		System.out.println(savedProduct);
 	}
@@ -61,6 +61,20 @@ class JpaTutorialApplicationTests {
 
 		System.out.println(products);
 	}
+
+	@Test
+	void getAfter () {
+		List<ProductEntity> products = productRepository.findByCreatedAtAfter(LocalDateTime.of(2026, 5, 1, 23, 0));
+		System.out.println(products);
+	}
+
+	@Test
+	void getIsNull () {
+		List<ProductEntity> products = productRepository.findByQuantityIsNull();
+		System.out.println(products);
+	}
+
+
 
 
 
