@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @SpringBootTest
 class JpaTutorialApplicationTests {
@@ -74,8 +75,42 @@ class JpaTutorialApplicationTests {
 		System.out.println(products);
 	}
 
+	@Test
+	void getByPriceAndQuantity () {
+		List<ProductEntity> products = productRepository.findByPriceAndQuantity(new BigDecimal(101) ,10 );
+		System.out.println(products);
+	}
 
+	@Test
+	void getById () {
+		ProductEntity product = productRepository.findById(11L).orElse(null);
+		System.out.println(product);
+	}
 
+	@Test
+	void getByTitleAndPrice () {
+		Optional<ProductEntity> product = productRepository.findByTitleAndPrice("Oreo" , new BigDecimal(121));
+		product.ifPresent(System.out::println);
+	}
+
+//	Native query
+	@Test
+	void getIdTitle () {
+		List<ProductEntity> products = productRepository.getIdAndQuantity();
+		System.out.println(products);
+	}
+
+	@Test
+	void getByPrice () {
+		List<ProductEntity> products = productRepository.findByPrice(new BigDecimal(101));
+		System.out.println(products);
+	}
+
+	@Test
+	void getOrderBy () {
+		List<ProductEntity> products = productRepository.findAllByOrderByQuantityDesc();
+		System.out.println(products);
+	}
 
 
 }
